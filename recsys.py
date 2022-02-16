@@ -31,59 +31,6 @@ class recsys:
         self.name_to_itemID = {}
         self.algorithm = []
     
-    def process_data(self, filename = "ratings_week.csv", short_test = False):
-        """        
-        Function to clean the example data
-        Parameters
-        ----------
-        filename : string, optional
-            CSV file with the example data. The default is "ratings_week.csv".
-        short_test : boolean, optional
-            To do a short calculation and only choose the first 1000 rows. The default is False.
-
-        Returns
-        -------
-        None, saves clean data as a csv.
-
-        """
-                
-        filepath = os.path.join(os.getcwd(), filename)
-        df = pd.read_csv( filepath )
-        
-        filesave = "ratings_clean.csv"
-        
-        if short_test:
-            df = df.iloc[:1000]
-            filesave = "ratings_clean_short.csv"
-
-        #max num of sessions in a machine
-        df["max_sessions"] = df.groupby("player_id")["num_sesiones"].transform('max')
-
-        #tag the items to distinguish raw id from inner id
-        df["maquina"] = ["item" + str(x) for x in df["maquina"]]
-
-        #at least 4 sessions to filter clients that play too little
-        df = df.loc[ df["max_sessions"]>= 4 ]
-
-        #RATING: Top machine is 10, the rest are scaled down relative to it
-        ratings0 = df["num_sesiones"] / df["max_sessions"]
-        df["rating"] = np.round( ratings0 * 10, 0 ).astype( int )
-
-        df["rating"].replace({0:1}, inplace = True)
-
-        df.rename(columns = {"player_id": "user", "maquina": "item"}, inplace = True)
-
-        df = df[["user", "item", "rating"]]
-
-        df.to_csv(filesave, index = False)
-        
-        # A reader is needed but only the rating_scale param is requiered.
-        # reader = Reader(rating_scale=(1, 10))
-            
-        # # The columns must correspond to user id, item id and ratings (in that order).
-        # data = Dataset.load_from_df(df, reader)
-
-        # return data
     
     def create_surprise_data(self, filename = "ratings_clean.csv", rating_scale=(1, 10)):
         """        

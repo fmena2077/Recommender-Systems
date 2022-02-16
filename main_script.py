@@ -20,12 +20,9 @@ start = datetime.now()
 
 recsys = recsys()
 
-""" Process data and create ratings"""
-recsys.process_data(filename = "ratings_week.csv", short_test = False)
-
 
 """ Collect data """
-recsys.create_surprise_data(filename = "ratings_clean_short.csv")
+recsys.create_surprise_data(filename = "ratings_clean.csv")
 
 
 
