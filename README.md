@@ -1,7 +1,7 @@
 # Recommender Systems
 
 This repository shows how to implement recommender systems using
-the library scikit-surprise and tensorflow
+the library scikit-surprise and tensorflow recommenders
 
 Files for scikit-surprise models:
 
@@ -16,8 +16,17 @@ Files for scikit-surprise models:
   
 Files for Tensorflow Retrieval model:
 
-* recsys_retrieval.py: Class that includes all the relevant methods to create a retrieval model 
+* recsys_retrieval.py: Class that includes all the relevant methods to create a retrieval model with Tensorflow 
 
 
 * main_script_retrieval.py: Example script of how to read from csv and create a tf.data object, 
   create a retrieval model using tensorflow-recommenders, and recommend items
+  
+Files for Tensorflow Retrieval model:
+
+* recsys_ranking.py: Class that includes all the relevant methods to create a ranking model 
+
+
+* main_script_retrieval.py: Example script of how to read from csv and create a tf.data object, 
+  create a retrieval model using tensorflow-recommenders, and recommend items
+  
