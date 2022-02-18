@@ -28,5 +28,5 @@ Files for Tensorflow Retrieval model:
 
 
 * main_script_retrieval.py: Example script of how to read from csv and create a tf.data object, 
-  create a retrieval model using tensorflow-recommenders, and recommend items
+  create a ranking model using tensorflow-recommenders, and recommend items
   
